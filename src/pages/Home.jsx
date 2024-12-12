@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { fetchMessages } from "../api/inbox"; // Backend API for messages
-import styles from "./Home.module.css";
+import styles from "./Home.module.css"; // You can further customize these styles
 
 const Home = () => {
   const [messages, setMessages] = useState([]);
@@ -29,68 +29,94 @@ const Home = () => {
 
   return (
     <div className={`container mt-4 ${styles.container}`}>
-      <h4 className={styles.header}>LOQUE, MARK FUCKINGBERN (20222-61615-MN-0)</h4>
-      <div className="row mt-3">
-        {/* Left Section */}
-        <div className="col-md-3">
-          <div className={styles.leftMenu}>
-            <a href="#" className={styles.menuItem}>
-              Inbox ({messages.length})
-            </a>
-            <a href="#" className={styles.menuItem}>
-              Graduation Clearance
-            </a>
-            <a href="#" className={styles.menuItem}>
-              Submit Feedback
-            </a>
-          </div>
-        </div>
+      {/* "Home" text added here above the name */}
+      <div className="mb-4">
+        <h2 className={styles.homeHeader}>Home</h2>
+      </div>
 
-        {/* Main Content */}
-        <div className="col-md-9">
-          <div className={`card ${styles.mainCard}`}>
-            {/* Memorandum Section */}
-            <div className={`card-body ${styles.memoSection}`}>
-              <div className={styles.memoIcon}>
-                <i className="bi bi-file-earmark-arrow-down"></i>
-              </div>
-              <div className={styles.memoDetails}>
-                <a
-                  href="/files/CvSU Internship MOA.docx"
-                  download
-                  className={styles.memoLink}
-                >
-                  CvSU Internship Memorandum of Agreement
-                </a>
-                <p className={styles.memoUpdate}>Last updated: November 25, 2024</p>
+      {/* Main card wrapper for all content */}
+      <div className="card shadow-sm">
+        <div className="card-body">
+          {/* Header Section inside the card */}
+          <div className="mb-4">
+            <h4 className={styles.header}>
+              LOQUE, MARK FUCKINGBERN (20222-61615-MN-0)
+            </h4>
+          </div>
+
+          {/* Content Section - All in One Div */}
+          <div className="row">
+            {/* Left Menu */}
+            <div className="col-md-3 col-sm-12 mb-4">
+              <div className={`card ${styles.menuCard} shadow-sm`}>
+                <div className="card-body">
+                  <a href="#" className={`d-block mb-2 ${styles.menuItem}`}>
+                    Inbox ({messages.length})
+                  </a>
+                  <a href="#" className={`d-block mb-2 ${styles.menuItem}`}>
+                    Graduation Clearance
+                  </a>
+                  <a href="#" className={`d-block mb-2 ${styles.menuItem}`}>
+                    Submit Feedback
+                  </a>
+                </div>
               </div>
             </div>
-          </div>
 
-          {/* Inbox Section */}
-          <div className={styles.inboxSection}>
-            <table className={`table ${styles.inboxTable}`}>
-              <thead>
-                <tr>
-                  <th scope="col">Inbox</th>
-                </tr>
-              </thead>
-              <tbody>
-                {messages.map((message) => (
-                  <tr key={message.id} onClick={() => handleMessageClick(message.id)}>
-                    <td className={styles.inboxMessage}>
-                      <i className="bi bi-envelope-fill text-danger me-2"></i>
-                      {message.title}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+            {/* Main Content (Right Section) */}
+            <div className="col-md-9 col-sm-12">
+              {/* Memorandum Section */}
+              <div className="card shadow-sm mb-4">
+                <div className="card-body d-flex align-items-center">
+                  <div className={styles.memoIcon}>
+                    <i className="bi bi-file-earmark-arrow-down"></i>
+                  </div>
+                  <div className="ms-3">
+                    <a
+                      href="/files/CvSU Internship MOA.docx"
+                      download
+                      className={styles.memoLink}
+                    >
+                      CvSU Internship Memorandum of Agreement
+                    </a>
+                    <p className={styles.memoUpdate}>
+                      Last updated: November 25, 2024
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Inbox Section */}
+              <div className="card shadow-sm">
+                <div className="card-body">
+                  <h5 className="mb-3">Inbox</h5>
+                  <ul className="list-group">
+                    {messages.length === 0 ? (
+                      <p>No messages available</p>
+                    ) : (
+                      messages.map((message) => (
+                        <li
+                          key={message.id}
+                          className="list-group-item d-flex justify-content-between align-items-center"
+                          onClick={() => handleMessageClick(message.id)}
+                        >
+                          <i className="bi bi-envelope-fill text-danger me-2"></i>
+                          {message.title}
+                          <button className="btn btn-outline-secondary btn-sm">
+                            <i className="bi bi-printer"></i>
+                          </button>
+                        </li>
+                      ))
+                    )}
+                  </ul>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Modal */}
+      {/* Modal for selected message */}
       {showModal && selectedMessage && (
         <div
           className="modal show fade"

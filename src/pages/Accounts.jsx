@@ -66,6 +66,21 @@ const Account = () => {
   ];
 
   return (
+    <div className={`container mt-4 ${styles.container}`}>
+    {/* "Home" text added here above the name */}
+    <div className="mb-4">
+      <h2 className={styles.homeHeader}>Accounts</h2>
+    </div>
+
+    {/* Main card wrapper for all content */}
+    <div className="card shadow-sm">
+      <div className="card-body">
+        {/* Header Section inside the card */}
+        <div className="mb-4">
+          <h4 className={styles.header}>
+            LOQUE, MARK FUCKINGBERN (20222-61615-MN-0)
+          </h4>
+        </div>
     <div className={styles.tableContainer}>
       <table className={styles.table}>
         <thead>
@@ -95,6 +110,9 @@ const Account = () => {
           ))}
         </tbody>
       </table>
+    </div>
+    </div>
+    </div>
     </div>
   );
 };

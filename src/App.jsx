@@ -7,6 +7,8 @@ import Schedule from "./pages/Schedule";
 import Grades from "./pages/Grades";
 import Forms from "./pages/Forms";
 import HDF from "./pages/HDF";
+import Profile from "./pages/Profile"
+import ChangePass from "./pages/ChangePass";
 import InboxDetail from "./pages/InboxDetail"; // Add this import
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
@@ -25,6 +27,8 @@ function App() {
         <Route path="/grades" element={<Grades />} />
         <Route path="/forms" element={<Forms />} />
         <Route path="/hdf" element={<HDF />} />
+        <Route path="/profile" element={<Profile/>}/>
+        <Route path="/change-password" element={<ChangePass/>}/>
         <Route path="/inbox/:id" element={<InboxDetail />} />
       </Routes>
     </Router>
